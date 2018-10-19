@@ -1,0 +1,25 @@
+---
+title: "final_project_precis"
+author: "Tanya Rohatgi"
+date: "10/19/2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+library(tidyverse)
+library(knitr)
+library(readxl)
+library(janitor)
+
+arms_100 <- read_excel("SIPRI-Top-100-2002-2016.xlsx", skip = 3) %>%
+  clean_names() %>%
+  filter(!is.na(arms_sales_2016)) %>%
+  select(- notes_2016)
+```
+
+```{r}
+arms_100
+```
+
