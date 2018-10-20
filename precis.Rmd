@@ -19,7 +19,11 @@ arms_100 <- read_excel("SIPRI-Top-100-2002-2016.xlsx", skip = 3) %>%
   select(- notes_2016)
 ```
 
+# About SIPRI Arms Industry Data:
+
+The Stockholm International Peace Research Institute (SIPRI) dataset I intend to use for my final project contains financial information about the world's top 100 arms producing companies in 2015 and 2016, in both the private and the public sector in OECD and developing countries. It does not include data about armed services manufacturing units, and it does not include data from China. Estimates are based on open information, company annual reports, and newspaper/journal articles, among others. The dataset was updated in 2002 to include companies from Eastern Europe, including from what was the Soviet Union
+
 ```{r}
-arms_100
+
 ```
 
