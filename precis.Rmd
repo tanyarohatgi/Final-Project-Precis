@@ -13,7 +13,6 @@ library(knitr)
 library(readxl)
 library(janitor)
 library(kableExtra)
-library(qwraps2)
 
 arms_100 <- read_excel("SIPRI-Top-100-2002-2016.xlsx", skip = 3) %>%
   clean_names() %>%
@@ -26,17 +25,18 @@ arms_100 <- read_excel("SIPRI-Top-100-2002-2016.xlsx", skip = 3) %>%
 
 The Stockholm International Peace Research Institute (SIPRI) dataset I intend to use for my final project contains financial information about the world's top 100 arms producing companies in 2015 and 2016, in both the private and the public sector in OECD and developing countries. It does not include data about armed services manufacturing units, and it does not include data from China. Estimates are based on open information, company annual reports, and newspaper/journal articles, among others. The dataset was updated in 2002 to include companies from Eastern Europe, including from what was the Soviet Union
 
-
-# Exploring the Data:
+#Summaries of 2015 & 2016 Arms Sales, 2016 Total Profits (in millions of US$)
 ```{r, echo=FALSE, warning=FALSE}
-
 arms_100$arms_sales_2015_constant_2016_prices_note_d <- as.double(arms_100$arms_sales_2015_constant_2016_prices_note_d)
 arms_100$total_profit_2016 <- as.double(arms_100$total_profit_2016)
 
-summary(arms_100$arms_sales_2016)
 summary(arms_100$arms_sales_2015_constant_2016_prices_note_d)
+summary(arms_100$arms_sales_2016)
 summary(arms_100$total_profit_2016)
+```
 
+# Exploring the Data:
+```{r, echo=FALSE, warning=FALSE}
 arms_100 %>%
   select(company_2016_note_c, arms_sales_2016) %>%
   arrange(desc(arms_sales_2016)) %>%
@@ -50,7 +50,7 @@ arms_100 %>%
   select(company_2016_note_c, sales_increase) %>%
   arrange(desc(sales_increase)) %>%
   head(n = 10) %>%
-  kable(caption = "Arms Manufacturing Companies With the Greatest Increase in Arms Sales, 2015-16 (Figures in millions of US$)", col.names = c("Company", "Arms Sales Increase"), digits = 1) %>%
+  kable(caption = "Companies With the Greatest Increase in Arms Sales, 2015-16 (Figures in millions of US$)", col.names = c("Company", "Arms Sales Increase"), digits = 1) %>%
   kable_styling(bootstrap_options = "hover")
 
 arms_100 %>%
@@ -58,7 +58,7 @@ arms_100 %>%
   summarise(country_sales_2016 = sum(arms_sales_2016)) %>%
   arrange(desc(country_sales_2016)) %>%
   head(n = 10) %>%
-  kable(caption = "Highest Arms Manufacturing Sales by Country, 2016 (Figures in millions of US$)", col.names = c("Country", "Arms Sales in 2016")) %>%
+  kable(caption = "Highest Arms Industry Sales by Country, 2016 (Figures in millions of US$)", col.names = c("Country", "Arms Sales in 2016")) %>%
   kable_styling(bootstrap_options = "hover")
 ```
 
